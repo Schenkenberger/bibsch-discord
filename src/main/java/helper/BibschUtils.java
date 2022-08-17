@@ -7,12 +7,14 @@ import javax.swing.text.html.HTMLDocument;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.parser.ParserDelegator;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Properties;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
@@ -55,6 +57,31 @@ public class BibschUtils {
         };
 
         new Timer().schedule(timerTask, 0, 10000);
+    }
+
+    public static String prop(String proppa) {
+        
+        String returnValue = null;
+        try (InputStream input = BibschUtils.class.getClassLoader().getResourceAsStream("my.properties")) {
+
+            Properties prop = new Properties();
+
+            if (input == null) {
+                System.out.println("Sorry, unable to find config.properties");
+            }
+
+            //load a properties file from class path, inside static method
+            prop.load(input);
+
+            //get the property value and print it out
+            returnValue = prop.getProperty(proppa);
+
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        
+        return returnValue;
     }
 
     public static String getTitle(String url, String element) {

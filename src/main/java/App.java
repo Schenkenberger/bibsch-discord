@@ -21,12 +21,13 @@ public class App extends ListenerAdapter {
 
     public App() throws LoginException, InterruptedException {
 
-        jda = JDABuilder.createDefault("ODA1NzQ2MjU2OTk5MDg4MTc5.G7IzZA.8R9AoFI_F-YNnSGlZpguuitcn6rUgQuNyOtXxI")
+        jda = JDABuilder.createDefault(BibschUtils.prop("token"))
                 .build();
         jda.addEventListener(new MusicListener());
         jda.addEventListener(new MemeListener());
 
         jda.awaitReady();
+
 
 
         CommandCreateAction skip = jda.getGuildById(gId).upsertCommand("skip", "Skip a playback");
