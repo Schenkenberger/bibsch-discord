@@ -1,30 +1,50 @@
+import helper.BibschUtils;
+import listener.MemeListener;
+import listener.MusicListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.events.message.guild.GuildMessageReceivedEvent;
+import net.dv8tion.jda.api.JDAInfo;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.interactions.commands.OptionType;
+import net.dv8tion.jda.api.requests.restaction.CommandCreateAction;
+import net.dv8tion.jda.api.utils.MarkdownSanitizer;
+import net.dv8tion.jda.api.utils.MiscUtil;
+import net.dv8tion.jda.api.utils.TimeUtil;
 
 import javax.security.auth.login.LoginException;
+import java.util.concurrent.TimeUnit;
 
 public class App extends ListenerAdapter {
-    public static JDA jda;
-    public static void main(String[] args) {
-        try {
-            jda = JDABuilder.createDefault("ODA1NzQ2MjU2OTk5MDg4MTc5.YBfXrQ.JZ7Zel_Fe2yC8mo_lA5J267Zc9w").build();
-           // jda.addEventListener(new MemeListener());
-            jda.addEventListener(new MusicListener());
-            jda.addEventListener(new FooListener());
 
-        } catch (LoginException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    private JDA jda;
+    private long gId = 1006172676190130307l;
+
+    public App() throws LoginException, InterruptedException {
+
+        jda = JDABuilder.createDefault("ODA1NzQ2MjU2OTk5MDg4MTc5.G7IzZA.8R9AoFI_F-YNnSGlZpguuitcn6rUgQuNyOtXxI")
+                .build();
+        jda.addEventListener(new MusicListener());
+        jda.addEventListener(new MemeListener());
+
+        jda.awaitReady();
+
+
+        CommandCreateAction skip = jda.getGuildById(gId).upsertCommand("skip", "Skip a playback");
+        skip.timeout(2l, TimeUnit.SECONDS);
+        skip.queue();
+
+
+        CommandCreateAction play = jda.getGuildById(gId).upsertCommand("play", "/play <URL>").addOption(OptionType.STRING, "url", "Start playback");
+        play.timeout(2l, TimeUnit.SECONDS);
+        play.queue();
+
+        BibschUtils.updateCommands(jda, gId);
+
 
     }
 
-    public static void disconnect() {
-        Guild guild = jda.getGuildById("831446969234358292");
-        guild.getAudioManager().closeAudioConnection();
+    public static void main(String[] args) throws LoginException, InterruptedException {
+        new App();
+
     }
 }

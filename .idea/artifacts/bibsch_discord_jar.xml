@@ -1,6 +1,6 @@
 <component name="ArtifactManager">
   <artifact type="jar" name="bibsch-discord:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/bibsch_discord_jar</output-path>
+    <output-path>H:/</output-path>
     <root id="archive" name="bibsch-discord.jar">
       <element id="directory" name="META-INF">
         <element id="file-copy" path="$PROJECT_DIR$/src/main/java/META-INF/MANIFEST.MF" />
@@ -34,6 +34,8 @@
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/apache/commons/commons-collections4/4.1/commons-collections4-4.1.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/slf4j/slf4j-api/1.7.25/slf4j-api-1.7.25.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$MAVEN_REPOSITORY$/club/minnced/opus-java-natives/1.1.0/opus-java-natives-1.1.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/com/github/aikaterna/lavaplayer-natives/original-f067f4dae7-1/lavaplayer-natives-original-f067f4dae7-1.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$MAVEN_REPOSITORY$/org/xerial/sqlite-jdbc/3.36.0.3/sqlite-jdbc-3.36.0.3.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>
