@@ -21,7 +21,7 @@ public class App extends ListenerAdapter {
 
     public App() throws LoginException, InterruptedException {
 
-        jda = JDABuilder.createDefault(BibschUtils.prop("token"))
+        jda = JDABuilder.createDefault(BibschUtils.prop("tokens"))
                 .build();
         jda.addEventListener(new MusicListener());
         jda.addEventListener(new MemeListener());
