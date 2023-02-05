@@ -4,6 +4,7 @@ import listener.MusicListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.JDAInfo;
+import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.requests.restaction.CommandCreateAction;
@@ -14,10 +15,10 @@ import net.dv8tion.jda.api.utils.TimeUtil;
 import javax.security.auth.login.LoginException;
 import java.util.concurrent.TimeUnit;
 
-public class App extends ListenerAdapter {
+public class App {
 
     private JDA jda;
-    private long gId = 1006172676190130307l;
+    private long gId = 1052690941753970718l;
 
     public App() throws LoginException, InterruptedException {
 
@@ -27,8 +28,6 @@ public class App extends ListenerAdapter {
         jda.addEventListener(new MemeListener());
 
         jda.awaitReady();
-
-
 
         CommandCreateAction skip = jda.getGuildById(gId).upsertCommand("skip", "Skip a playback");
         skip.timeout(2l, TimeUnit.SECONDS);
@@ -40,7 +39,6 @@ public class App extends ListenerAdapter {
         play.queue();
 
         BibschUtils.updateCommands(jda, gId);
-
 
     }
 

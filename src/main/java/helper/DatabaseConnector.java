@@ -16,13 +16,11 @@ public class DatabaseConnector {
 
     private void connect() {
 
-
-
         if ((System.getProperty("user.dir").contains("schen"))) {
             data = "jdbc:sqlite:C:\\Users\\schen\\Desktop\\sqlite-tools-win32-x86-3380200\\bibsch.db";
 
         } else {
-            data = "jdbc:sqlite:/media/nas/bibsch/bibsch.db";
+            data = "jdbc:sqlite:/home/nas/bibsch.db";
         }
 
         try {
@@ -44,6 +42,8 @@ public class DatabaseConnector {
             list.add(Arrays.asList(resultSet.getString(1), resultSet.getString(2), resultSet.getString(3)));
         }
 
+        statement.close();
+        resultSet.close();
         return list;
     }
 

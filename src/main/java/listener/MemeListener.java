@@ -107,7 +107,7 @@ public class MemeListener extends ListenerAdapter {
                 JSONArray jsonArray = getData();
 
                 for (int i = 0; i < jsonArray.length(); i++) {
-                    jda.getGuildById("1006172676190130307").getTextChannelById("1006173484520575076").sendMessage("" + jsonArray.getJSONObject(i).get("url")).queue();
+                    jda.getGuildById("1026450198496555098").getTextChannelById("1006173484520575076").sendMessage("" + jsonArray.getJSONObject(i).get("url")).queue();
                 }
             }
         };
